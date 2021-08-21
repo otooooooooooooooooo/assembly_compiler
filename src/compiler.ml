@@ -351,11 +351,12 @@ let is_asm_file filename =
 (**
 Returns content of input channel as an
 unformatted sourceCode
+and closes file
 *)
 let readAllLines file : sourceCode = 
     let rec readLines acc lineNum f =
     try readLines ((input_line f, lineNum) :: acc) (lineNum + 1) f
-    with End_of_file -> rev acc
+    with End_of_file -> close_in file; rev acc
     in readLines [] 1 file 
 
 
