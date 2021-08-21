@@ -190,7 +190,7 @@ let rec is_blank_line line =
     in
     match l with
         |0 -> true
-        |x -> if sub line 0 1 = " " then is_blank_line (sub line 1 (l-1)) else false
+        |x -> (sub line 0 1 = " ") && (is_blank_line (sub line 1 (l-1)))
 
 (**
 Formats list of assembly
